@@ -1,1 +1,0 @@
-SELECT TOP 10 * FROM HISTORY.nba_stats
