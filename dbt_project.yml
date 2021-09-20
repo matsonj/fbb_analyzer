@@ -40,3 +40,4 @@ models:
             schema: prep
         conformed:
             schema: conf
+            materialized: table
