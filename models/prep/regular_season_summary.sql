@@ -1,5 +1,6 @@
 SELECT [DATA_SET]
       ,[PLAYER_FULL_NAME]
+      ,COUNT(1) AS GP
       ,SUM([MIN]) AS [MIN]   
       ,SUM([FG]) AS FGM     
       ,SUM([FGA]) AS FGA
