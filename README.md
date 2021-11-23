@@ -9,11 +9,11 @@ This project is designed to take raw nba game data and turn into a predictive mo
 Currently, 2013 to 2018 data has been ingested and basic analysis completed. This is leveraging FOSS (dbeaver, vscode, and dbt-core) to accomplish the automation & prediction. 
 
 ### to-do
-[ ] manually load 2019, 2020, 2021 data
-[ ] load historical transaction data (team history?)
-[ ] create method to predict standings
-[ ] create method to calculate current standings
-[ ] create method to analyze fit of specific players based on team comp
-[ ] create method to analyze specific matchups and which players to play
- - create a report on which players increase or decrease odds
-[ ] Explore meltano for data extraction & loading
+ - [ ] manually load 2019, 2020, 2021 data
+ - [ ] load historical transaction data (team history?)
+ - [ ] create method to predict standings
+ - [ ] create method to calculate current standings
+ - [ ] create method to analyze fit of specific players based on team comp
+ - [ ] create method to analyze specific matchups and which players to play
+   - [ ] create a report on which players increase or decrease odds
+ - [ ] Explore meltano for data extraction & loading
