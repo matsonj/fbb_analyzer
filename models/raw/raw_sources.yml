@@ -3,7 +3,14 @@ version: 2
 sources:
   - name: all_data # this is the source_name
     database: hyperdunk
-    schema: history
+    schema: import
 
     tables:
-      - name: nba_stats # this is the table_name
+      - name: 2013_2014_stats
+      - name: 2014_2015_stats
+      - name: 2015_2016_stats
+      - name: 2016_2017_stats
+      - name: 2017_2018_stats
+      - name: 2018_2019_stats
+      - name: 2019_2020_stats
+      - name: 2020_2021_stats

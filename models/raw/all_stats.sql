@@ -1,1 +1,1 @@
-SELECT * FROM {{ source( 'all_data', 'nba_stats' ) }}
+SELECT * FROM {{ source( 'all_data', '2013_2014_stats' ) }}
