@@ -1,9 +1,9 @@
 version: 2
 
 sources:
-  - name: NBADB # this is the source_name
-    database: NBADB
-    schema: HISTORY
+  - name: all_data # this is the source_name
+    database: hyperdunk
+    schema: history
 
     tables:
       - name: nba_stats # this is the table_name

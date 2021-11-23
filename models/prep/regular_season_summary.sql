@@ -1,24 +1,24 @@
-SELECT [DATA_SET]
-      ,[PLAYER_FULL_NAME]
-      ,COUNT(1) AS GP
-      ,SUM([MIN]) AS [MIN]   
-      ,SUM([FG]) AS FGM     
-      ,SUM([FGA]) AS FGA
-      ,SUM([_2P]) AS [2PM]     
-      ,SUM([_2PA]) AS [2PA]
-      ,SUM([_3P]) AS [3PM]
-      ,SUM([_3PA]) AS [3PA]
-      ,SUM([FT]) AS FTM     
-      ,SUM([FTA]) AS FTA     
-      ,SUM([OR]) AS [OR]    
-      ,SUM([DR]) AS DR    
-      ,SUM([TOT]) AS REB     
-      ,SUM([A]) AS AST
-      ,SUM([PF]) AS PF    
-      ,SUM([ST]) AS STL    
-      ,SUM([TO]) AS [TO]    
-      ,SUM([BL]) AS BLK    
-      ,SUM([PTS]) AS PTS
+SELECT data_set
+      ,player_full_name
+      ,COUNT(1) AS gp
+      ,SUM("min") AS "min" 
+      ,SUM(fgm) AS fgm     
+      ,SUM(fga) AS fga
+      ,SUM("2pm") AS "2pm"   
+      ,SUM("2pa") AS "2pa"
+      ,SUM("3pm") AS "3pm"
+      ,SUM("3pa") AS "3pa"
+      ,SUM(ftm) AS ftm     
+      ,SUM(fta) AS fta     
+      ,SUM(oreb) AS "oreb"    
+      ,SUM(dreb) AS "dreb"    
+      ,SUM(totreb) AS reb     
+      ,SUM(ast) AS ast
+      ,SUM(pf) AS pf    
+      ,SUM(stl) AS stl    
+      ,SUM(tos) AS tos    
+      ,SUM(blk) AS blk    
+      ,SUM(pts) AS pts
 FROM {{ ref( 'regular_season_details' ) }}
-GROUP BY [DATA_SET], [PLAYER_FULL_NAME]
-HAVING SUM([MIN]) > 400
+GROUP BY data_set, player_full_name
+HAVING SUM("min") > 400

@@ -1,25 +1,25 @@
-SELECT [DATA_SET]
-       ,[PLAYER_FULL_NAME]
-       ,[Percentile_MPG]= PERCENT_RANK() OVER (ORDER BY [MPG])
-       ,[Percentile_2P%]= PERCENT_RANK() OVER (ORDER BY [2P%])
-       ,[Percentile_3P%]= PERCENT_RANK() OVER (ORDER BY [3P%])
-       ,[Percentile_FT%]= PERCENT_RANK() OVER (ORDER BY [FT%])
-       ,[Percentile_FG%]= PERCENT_RANK() OVER (ORDER BY [FG%])
-       ,[Percentile_FGM/36] = PERCENT_RANK() OVER (ORDER BY [FGM/36])
-       ,[Percentile_FGA/36] = PERCENT_RANK() OVER (ORDER BY [FGA/36])
-       ,[Percentile_2PM/36] = PERCENT_RANK() OVER (ORDER BY [2PM/36])
-       ,[Percentile_2PA/36] = PERCENT_RANK() OVER (ORDER BY [2PA/36])
-       ,[Percentile_3PM/36] = PERCENT_RANK() OVER (ORDER BY [3PM/36])
-       ,[Percentile_3PA/36] = PERCENT_RANK() OVER (ORDER BY [3PA/36])
-       ,[Percentile_FTM/36] = PERCENT_RANK() OVER (ORDER BY [FTM/36])
-       ,[Percentile_FTA/36] = PERCENT_RANK() OVER (ORDER BY [FTA/36])
-       ,[Percentile_OR/36] = PERCENT_RANK() OVER (ORDER BY [OR/36])
-       ,[Percentile_DR/36] = PERCENT_RANK() OVER (ORDER BY [DR/36])
-       ,[Percentile_REB/36] = PERCENT_RANK() OVER (ORDER BY [REB/36])
-       ,[Percentile_AST/36] = PERCENT_RANK() OVER (ORDER BY [AST/36])
-       ,[Percentile_PF/36] = PERCENT_RANK() OVER (ORDER BY [PF/36])
-       ,[Percentile_STL/36] = PERCENT_RANK() OVER (ORDER BY [STL/36])
-       ,[Percentile_TO/36] = PERCENT_RANK() OVER (ORDER BY [TO/36] DESC)
-       ,[Percentile_BLK/36] = PERCENT_RANK() OVER (ORDER BY [BLK/36])
-       ,[Percentile_PTS/36] = PERCENT_RANK() OVER (ORDER BY [PTS/36])
+SELECT data_set
+       ,player_full_name
+       ,PERCENT_RANK() OVER (ORDER BY "mpg") AS "percentile_mpg"
+       ,PERCENT_RANK() OVER (ORDER BY "2p%") AS "percentile_2p%"
+       ,PERCENT_RANK() OVER (ORDER BY "3p%") AS "percentile_3p%"
+       ,PERCENT_RANK() OVER (ORDER BY "ft%") AS "percentile_ft%"
+       ,PERCENT_RANK() OVER (ORDER BY "fg%") AS "percentile_fg%"
+       ,PERCENT_RANK() OVER (ORDER BY "fgm/36") AS "percentile_fgm/36"
+       ,PERCENT_RANK() OVER (ORDER BY "fga/36") AS "percentile_fga/36"
+       ,PERCENT_RANK() OVER (ORDER BY "2pm/36") AS "percentile_2pm/36"
+       ,PERCENT_RANK() OVER (ORDER BY "2pa/36") AS "percentile_2pa/36"
+       ,PERCENT_RANK() OVER (ORDER BY "3pm/36") AS "percentile_3pm/36"
+       ,PERCENT_RANK() OVER (ORDER BY "3pa/36") AS "percentile_3pa/36"
+       ,PERCENT_RANK() OVER (ORDER BY "ftm/36") AS "percentile_ftm/36"
+       ,PERCENT_RANK() OVER (ORDER BY "fta/36") AS "percentile_fta/36"
+       ,PERCENT_RANK() OVER (ORDER BY "oreb/36") AS "percentile_oreb/36"
+       ,PERCENT_RANK() OVER (ORDER BY "dreb/36") AS "percentile_dreb/36"
+       ,PERCENT_RANK() OVER (ORDER BY "reb/36") AS "percentile_reb/36"
+       ,PERCENT_RANK() OVER (ORDER BY "ast/36") AS "percentile_ast/36"
+       ,PERCENT_RANK() OVER (ORDER BY "pf/36") AS "percentile_pf/36"
+       ,PERCENT_RANK() OVER (ORDER BY "stl/36") AS "percentile_stl/36"
+       ,PERCENT_RANK() OVER (ORDER BY "tos/36" DESC) AS "percentile_tos/36"
+       ,PERCENT_RANK() OVER (ORDER BY "blk/36") AS "percentile_blk/36"
+       ,PERCENT_RANK() OVER (ORDER BY "pts/36") AS "percentile_pts/36"
   FROM {{ ref( 'regular_season_summary_stats' ) }}

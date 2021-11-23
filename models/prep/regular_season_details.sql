@@ -1,27 +1,27 @@
-SELECT [DATA_SET]
-      ,[DATE]
-      ,[PLAYER_FULL_NAME]
-      ,[POSITION]
-      ,[OWN_TEAM]
-      ,[OPP_TEAM]
-      ,[VENUE_R_H]
-      ,[MIN]
-      ,[FG]
-      ,[FGA]
-      ,[_2P] = [FG] - [_3P]
-      ,[_2PA] = [FGA] - [_3PA]
-      ,[_3P]
-      ,[_3PA]
-      ,[FT]
-      ,[FTA]
-      ,[OR]
-      ,[DR]
-      ,[TOT]
-      ,[A]
-      ,[PF]
-      ,[ST]
-      ,[TO]
-      ,[BL]
-      ,[PTS]
-  FROM {{ ref( 'all_stats' ) }}
- WHERE [DATA_SET] LIKE '%egular%'
+SELECT data_set, 
+    date_of_game, 
+    player_full_name, 
+    "position", 
+    own_team, 
+    opp_team, 
+    renue AS venue, 
+    "min", 
+    fgm, 
+    fga,
+    fgm - "3pm" AS "2pm",
+    fga - "3pa" AS "2pa", 
+    "3pm", 
+    "3pa", 
+    ftm, 
+    fta, 
+    oreb, 
+    dreb, 
+    totreb, 
+    ast, 
+    pf, 
+    stl, 
+    tos, 
+    blk, 
+    pts
+FROM {{ ref( 'all_stats' ) }}
+WHERE data_set LIKE '%egular%'

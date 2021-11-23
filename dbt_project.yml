@@ -33,7 +33,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
     fbb_analyzer:
-        database: NBA_APP
         raw:
             schema: raw
         prep:

@@ -1,44 +1,44 @@
-SELECT [DATA_SET]
-      ,[PLAYER_FULL_NAME]
-      ,[GP]
-      ,[MIN]
-      ,[FGM]
-      ,[FGA]
-      ,[2PM]
-      ,[2PA]
-      ,[3PM]
-      ,[3PA]
-      ,[FTM]
-      ,[FTA]
-      ,[OR]
-      ,[DR]
-      ,[REB]
-      ,[AST]
-      ,[PF]
-      ,[STL]
-      ,[TO]
-      ,[BLK]
-      ,[PTS]
-      ,[MPG] = [MIN]/[GP]
-      ,[2P%] = CASE WHEN [2PA] > 0 THEN [2PM]*1.0/[2PA] ELSE 0 END 
-      ,[3P%] = CASE WHEN [3PA] > 0 THEN [3PM]*1.0/[3PA] ELSE 0 END 
-      ,[FT%] = CASE WHEN [FTA] > 0 THEN [FTM]*1.0/[FTA] ELSE 0 END 
-      ,[FG%] = CASE WHEN [FGA] > 0 THEN [FGM]*1.0/[FGA] ELSE 0 END 
-      ,[FGM/36] = [FGM] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[FGA/36] = [FGA] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[2PM/36] = [2PM] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[2PA/36] = [2PA] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[3PM/36] = [3PM] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[3PA/36] = [3PA] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[FTM/36] = [FTM] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[FTA/36] = [FTA] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[OR/36]  = [OR] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[DR/36]  = [DR] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[REB/36] = [REB] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[AST/36] = [AST] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[PF/36]  = [PF] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[STL/36] = [STL] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[TO/36]  = [TO] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[BLK/36] = [BLK] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
-      ,[PTS/36] = [PTS] * 1.0 / [GP] * 36 / ([MIN]/[GP]) 
+SELECT "data_set"
+      ,"player_full_name"
+      ,"gp"
+      ,"min"
+      ,"fgm"
+      ,"fga"
+      ,"2pm"
+      ,"2pa"
+      ,"3pm"
+      ,"3pa"
+      ,"ftm"
+      ,"fta"
+      ,"oreb"
+      ,"dreb"
+      ,"reb"
+      ,"ast"
+      ,"pf"
+      ,"stl"
+      ,"tos"
+      ,"blk"
+      ,"pts"
+      ,"min"/"gp" AS "mpg"
+      ,CASE WHEN "2pa" > 0 THEN "2pm"*1.0/"2pa" ELSE 0 END AS "2p%"
+      ,CASE WHEN "3pa" > 0 THEN "3pm"*1.0/"3pa" ELSE 0 END AS "3p%"
+      ,CASE WHEN "fta" > 0 THEN "ftm"*1.0/"fta" ELSE 0 END AS "ft%"
+      ,CASE WHEN "fga" > 0 THEN "fgm"*1.0/"fga" ELSE 0 END  AS "fg%"
+      ,"fgm" * 1.0 / "gp" * 36 / ("min"/"gp") AS "fgm/36"
+      ,"fga" * 1.0 / "gp" * 36 / ("min"/"gp") AS "fga/36"
+      ,"2pm" * 1.0 / "gp" * 36 / ("min"/"gp") AS "2pm/36"
+      ,"2pa" * 1.0 / "gp" * 36 / ("min"/"gp") AS "2pa/36"
+      ,"3pm" * 1.0 / "gp" * 36 / ("min"/"gp") AS "3pm/36"
+      ,"3pa" * 1.0 / "gp" * 36 / ("min"/"gp") AS "3pa/36"
+      ,"ftm" * 1.0 / "gp" * 36 / ("min"/"gp") AS "ftm/36"
+      ,"fta" * 1.0 / "gp" * 36 / ("min"/"gp") AS "fta/36"
+      ,"oreb" * 1.0 / "gp" * 36 / ("min"/"gp") AS "oreb/36"
+      ,"dreb" * 1.0 / "gp" * 36 / ("min"/"gp") AS "dreb/36"
+      ,"reb" * 1.0 / "gp" * 36 / ("min"/"gp") AS "reb/36"
+      ,"ast" * 1.0 / "gp" * 36 / ("min"/"gp") AS "ast/36"
+      ,"pf" * 1.0 / "gp" * 36 / ("min"/"gp") AS "pf/36"
+      ,"stl" * 1.0 / "gp" * 36 / ("min"/"gp") AS "stl/36"
+      ,"tos" * 1.0 / "gp" * 36 / ("min"/"gp") AS "tos/36"
+      ,"blk" * 1.0 / "gp" * 36 / ("min"/"gp") AS "blk/36"
+      ,"pts" * 1.0 / "gp" * 36 / ("min"/"gp") AS "pts/36"
 FROM {{ ref( 'regular_season_summary' ) }}
