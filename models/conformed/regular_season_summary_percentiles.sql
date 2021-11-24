@@ -1,4 +1,4 @@
-SELECT data_set
+SELECT dataset
        ,player_full_name
        ,PERCENT_RANK() OVER (ORDER BY "mpg") AS "percentile_mpg"
        ,PERCENT_RANK() OVER (ORDER BY "2p%") AS "percentile_2p%"

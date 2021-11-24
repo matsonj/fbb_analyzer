@@ -1,4 +1,4 @@
-SELECT data_set
+SELECT dataset
       ,player_full_name
       ,COUNT(1) AS gp
       ,SUM("min") AS "min" 
@@ -20,5 +20,5 @@ SELECT data_set
       ,SUM(blk) AS blk    
       ,SUM(pts) AS pts
 FROM {{ ref( 'regular_season_details' ) }}
-GROUP BY data_set, player_full_name
+GROUP BY dataset, player_full_name
 HAVING SUM("min") > 400

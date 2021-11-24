@@ -1,4 +1,4 @@
-SELECT "data_set"
+SELECT "dataset"
       ,"player_full_name"
       ,"gp"
       ,"min"
