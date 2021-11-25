@@ -35,3 +35,9 @@ Currently, 2013 to 2018 data has been ingested and basic analysis completed. Thi
       - modify linux firewall to allow port 5432
       - open port 5432 on your windows machine in the windows firewall rules
       - make sure your client pc is on the same subnet as your server (if you have multiple routers this can be semi-complex)
+  - meltano venv cannot be setup in your windows directory.
+    - go to 'cd ~' to go your home directory and create your python venv there.
+    - make sure add your the venv to your path. more here: https://www.meltano.com/docs/getting-started.html
+  - postgres tap takes a dependency on a couple of items that probably aren't in your venv.
+    - sudo apt-get install libpq-dev
+    - sudo pip3 install psycopg2-binary
