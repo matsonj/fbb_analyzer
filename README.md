@@ -6,7 +6,10 @@ This project is designed to take raw nba game data and turn into a predictive mo
  - analyze which free agents are the best fit for each team
 
 ### Current status
-Currently, 2013 to 2018 data has been ingested and basic analysis completed. This is leveraging FOSS (dbeaver, vscode, and dbt-core) to accomplish the automation & prediction. 
+Currently, 2013 to 2021 data has been ingested and basic analysis completed. This is leveraging FOSS (dbeaver, vscode, dbt-core, and meltano) to accomplish the automation & prediction. 
+
+### Latest data
+The lastest data can be found here: [latest csv detail](https://1drv.ms/u/s!AhFUa5zn5xJw2xD3WfsO_9RJcXv7?e=uxTDsP)
 
 ### to-do
  - [x] manually load 2019, 2020, 2021 data
@@ -15,7 +18,7 @@ Currently, 2013 to 2018 data has been ingested and basic analysis completed. Thi
  - [ ] create method to calculate current standings
  - [ ] create method to analyze fit of specific players based on team comp
  - [ ] create method to analyze specific matchups and which players to play
-  - [ ] create a report on which players increase or decrease odds
+   - [ ] create a report on which players increase or decrease odds
  - [x] Explore meltano for data extraction & loading
 
  ### ENVIRONMENT SETUP
