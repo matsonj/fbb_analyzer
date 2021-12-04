@@ -33,10 +33,19 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
     fbb_analyzer:
-        raw:
-            schema: raw
-        prep:
-            schema: prep
-        conformed:
-            schema: conf
-            materialized: table
+        history:
+            raw:
+                schema: raw
+            prep:
+                schema: prep
+            conformed:
+                schema: conf
+                materialized: table
+        current season:
+            raw:
+                schema: raw
+            prep:
+                schema: prep
+            conformed:
+                schema: conf
+                materialized: table
