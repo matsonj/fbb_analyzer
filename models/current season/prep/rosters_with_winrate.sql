@@ -11,6 +11,6 @@ select cr.id,
 				+ cast((cr.st = cr2.st) as int) + cast((cr.blk = cr2.blk) as int) + cast((cr."to" = cr2."to") as int)
 			) * 0.5 > 4.5 as int)
 		) as "wins"
-from jm_raw.current_rosters cr 
-join jm_raw.current_rosters cr2 on 1=1
+from {{ ref( 'current_rosters' ) }} cr 
+join {{ ref( 'current_rosters' ) }} cr2 on 1=1
 group by cr.id
