@@ -1,0 +1,19 @@
+version: 2
+models:
+  - name: current_rosters
+    description: mostly recently imported roster file
+    columns:
+      - name: id
+        tests:
+          - not_null
+          - unique
+  - name: rosters_with_gmscore
+    description: adding game score to each player
+    columns:
+      - name: game_score
+        description: '{{ doc("game_score") }}'
+  - name: rosters_with_winrate
+    description: adding win rate to each player
+    columns:
+      - name: wins
+        description: '{{ doc("winrate") }}'

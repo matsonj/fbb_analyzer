@@ -12,10 +12,10 @@ profile: 'local_sql'
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
-source-paths: ["models"]
+model-paths: ["models"]
 analysis-paths: ["analysis"]
 test-paths: ["tests"]
-data-paths: ["data"]
+seed-paths: ["data"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
@@ -35,7 +35,7 @@ models:
     fbb_analyzer:
         history:
             raw:
-                schema: raw
+                schema: psa
             prep:
                 schema: prep
             conformed:
@@ -43,9 +43,12 @@ models:
                 materialized: table
         current season:
             raw:
-                schema: raw
+                schema: psa
             prep:
                 schema: prep
             conformed:
                 schema: conf
                 materialized: table
+
+seeds:
+    schema: seed
