@@ -18,7 +18,6 @@ sources:
           - name: id
             description: unique id of the player from fantrax
             tests:
-              - unique
               - not_null
           - name: player
             description: player first and last name

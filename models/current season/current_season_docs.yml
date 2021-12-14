@@ -1,0 +1,9 @@
+version: 2
+models:
+  - name: current_rosters
+    description: mostly recently imported roster file
+    columns:
+      - name: id
+        tests:
+          - not_null
+          - unique
