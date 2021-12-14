@@ -48,5 +48,39 @@ sources:
             description: field goal percentage (fgm/fga) for the season
           - name: 3ptm
             description: 3 pointers made per game
+          - name: 3pt
+            description: 3 point percentage (3pm/3pa) for the season 
+          - name: fta
+            description: free throw attempts per game
+          - name: ft
+            description: free throw percentage (ftm/fta) for the season
+          - name: pts
+            description: number of points scored per game
+          - name: reb
+            description: number of rebounds per game
+          - name: ast
+            description: number of assists per game
+          - name: st
+            description: number of steals per game
+          - name: blk
+            description: number of blocks per game
+          - name: to
+            description: number of turnovers per game
+          - name: pf
+            description: number of personal fouls per game
+          - name: _smart_source_bucket
+            description: origin directory of the imported file
+          - name: _smart_source_file
+            description: file name of the imported file
+          - name: _smart_source_lineno
+            description: line number of the imported file
+          - name: _sdc_received_at
+            description: unknown
+          - name: _sdc_sequence_no
+            description: unknown
+          - name: _sdc_batched_at
+            description: time the data was imported into hyperdunk
+          - name: _sdc_primary_key
+            description: primary key hash of the record. primary keys are not currently implemented, so each row has its own key
       - name: stats
       - name: transactions
