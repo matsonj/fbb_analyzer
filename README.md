@@ -14,14 +14,14 @@ The lastest data can be found here: [latest csv detail](https://1drv.ms/u/s!AhFU
 ### to-do
  - [x] manually load 2019, 2020, 2021 data
  - [x] load historical transaction data (team history?)
- - [ ] create method to predict standings
+ - [x] create method to predict standings
  - [ ] create method to calculate current standings
  - [ ] create method to analyze fit of specific players based on team comp
  - [ ] create method to analyze specific matchups and which players to play
    - [ ] create a report on which players increase or decrease odds
  - [x] Explore meltano for data extraction & loading
 
- ### ENVIRONMENT SETUP
+ ## ENVIRONMENT SETUP
  I've set this up with postgresql on WSL2 (ubuntu). 
 
  Some tricks I've discovered:
