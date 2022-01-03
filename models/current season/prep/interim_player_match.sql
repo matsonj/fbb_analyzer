@@ -14,4 +14,4 @@ select id,
 	case when blk_pg > 0 then blk / blk_pg else 0 end as blk_pct_match,
 	case when "to" > 0 then to_pg / "to" else 0 end as to_pct_match
 from {{ ref( 'filtered_rosters' ) }} fr 
-	join {{ ref( 'simple_projections_per_game' ) }} sppg on 1=1
+	join {{ ref( 'simple_projections_per_game_match' ) }} sppg on 1=1
