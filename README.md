@@ -1,46 +1,75 @@
-This project is designed to take raw nba game data and turn into a predictive model that can accomplish the following:
- - predict which teams are strongest in aggregate
- - predict which players to play in a specific matchup
- - analyze which 1 for 1 trades are likely to be accepted and improve a specific team
-   - analyze which players are bad fit for specific teams based on team composition
- - analyze which free agents are the best fit for each team
+# MDS in a box
+This project serves as end to end example of running the "Modern Data Stack" in a local environment. Development is primarily done on Windows via WSL, which means Mac is untested (but should work).
 
-### Current status
-Currently, 2013 to 2021 data has been ingested and basic analysis completed. This is leveraging FOSS (dbeaver, vscode, dbt-core, and meltano) to accomplish the automation & prediction. 
+## Current progress
+Right now, you can get the nba schedule and elo ratings from this project and generate the following query. more to come, see to-dos at bottom of readme. And of course, the dbt docs are self hosted in Github Pages, [check them out here](https://matsonj.github.io/nba-monte-carlo/).
+![image](https://user-images.githubusercontent.com/16811433/195012880-adf8da03-ab16-4c16-8080-95514fb41c21.png)
+![image](https://user-images.githubusercontent.com/16811433/195012951-dde884a0-88f5-48d5-8203-b6f06ba7dbd4.png)
 
-### Latest data
-The lastest data can be found here: [latest csv detail](https://1drv.ms/u/s!AhFUa5zn5xJw2xD3WfsO_9RJcXv7?e=uxTDsP)
+## Getting started - Windows
+1. Create your WSL environment. Open a PowerShell terminal running as an administrator and execute:
+```
+wsl --install
+```
+* If this was the first time WSL has been installed, restart your machine.
 
-### to-do
- - [x] manually load 2019, 2020, 2021 data
- - [x] load historical transaction data (team history?)
- - [x] create method to predict standings
- - [ ] create method to calculate current standings
- - [ ] create method to analyze fit of specific players based on team comp
- - [ ] create method to analyze specific matchups and which players to play
-   - [ ] create a report on which players increase or decrease odds
- - [x] Explore meltano for data extraction & loading
+2. Open Ubuntu in your terminal and update your packages. 
+```
+sudo apt-get update
+```
+3. Install python3.
+```
+sudo apt-get install python3.8 python3-pip python3.8-venv
+```
+4. clone the this repo.
+```
+mkdir meltano-projects
+cd meltano-projects
+git clone https://github.com/matsonj/nba-monte-carlo.git
+# Go one folder level down into the folder that git just created
+cd nba-monte-carlo
+```
+5. build your project & run your pipeline
+```
+make build
+make run
+```
+6. Connect duckdb to superset. first, create an admin users
+```
+meltano invoke superset:create-admin
+```
+ - then boot up superset
+```
+meltano run superset:ui
+```
+ - lastly, connect it to duck db. navigate to localhost:8088, login, and add duckdb as a database.
 
- ## ENVIRONMENT SETUP
- I've set this up with postgresql on WSL2 (ubuntu). 
+   - SQL Alchemy URL: ```duckdb:////tmp/mdsbox.db```
 
- Some tricks I've discovered:
-  - basic postgres account seems to be kind of naughty to use. I created my own user account & and assigned superuser.
-    - ALTER USER username WITH SUPERUSER;
-  - using dbeaver.io for the sql runner.
-  - in your dbt profile, setting your host to localhost is slow. on a small version of this project - 15x slower using the friendly name.
-    - the fix is to use your localhost ip as a hardcode - i.e 127.0.0.1
-  - this psql server is only accessible from your local machine. 
-    - will need to do some/all of the following to other machines in the network to hit your WSL2 instance
-      - modify postgresql.conf to allow '*' (remove leading # too)
-      - modify pg_hba.conf to allow your IP range (or all IPs - but be careful here) 
-        - need to sudo gedit or similar to those files - can't modify with normal permissions
-      - modify linux firewall to allow port 5432
-      - open port 5432 on your windows machine in the windows firewall rules
-      - make sure your client pc is on the same subnet as your server (if you have multiple routers this can be semi-complex)
-  - meltano venv cannot be setup in your windows directory.
-    - go to 'cd ~' to go your home directory and create your python venv there.
-    - make sure add your the venv to your path. more here: https://www.meltano.com/docs/getting-started.html
-  - postgres tap takes a dependency on a couple of items that probably aren't in your venv.
-    - sudo apt-get install libpq-dev
-    - sudo pip3 install psycopg2-binary
+   - Advanced Settings > Other > Engine Parameters: ```{"connect_args":{"read_only":true}}```
+
+7. Explore your data inside superset. Go to SQL Labs > SQL Editor and write a custom query. A good example is ```SELECT * FROM reg_season_end```.
+
+## Running your pipeline on demand
+After your run ```make run```, you can run your pipeline again at any time with the following meltano command:
+```
+meltano run tap-spreadsheets-anywhere target-duckdb dbt-duckdb:build
+```
+
+## Using Parquet instead of a database
+There is an additional target in the meltano.yml file as well as dbt profiles.yml file that allows use of parquet as a storage medium. This can be invoked with ```make parquet```. 
+
+## Todos
+- [x] replace reg season schedule with 538 schedule
+- [x] add table for results
+- [x] add config options in dbt vars to ignore completed games
+- [x] make simulator only sim incomplete games
+- [ ] add table for new ratings
+- [ ] add config to use original or new ratings
+
+
+## Optional stuff
+- [ ] add dbt tests
+- [ ] add model descriptions
+- [x] change elo calculation to a udf
+- [x] make playoff elimination stuff a macro (param: schedule type)
