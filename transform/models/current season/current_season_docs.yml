@@ -1,0 +1,25 @@
+version: 2
+models:
+  - name: current_rosters
+    description: mostly recently imported roster file
+    columns:
+      - name: id
+        tests:
+          - not_null
+          - unique
+  - name: rosters_with_gmscore
+    description: adding game score to each player
+    columns:
+      - name: game_score
+        description: '{{ doc("game_score") }}'
+  - name: rosters_with_winrate
+    description: adding win rate to each player
+    columns:
+      - name: wins
+        description: '{{ doc("winrate") }}'
+  - name: interim_rosters
+    description: rosters with free agents removed, as well as players with a win rate < 75%.
+  - name: interim_rosters_with_winrate
+    description: recalculating wins on the limited subset of players remaining.
+  - name: filtered_rosters
+    description: rosters with limited free agents & all fantasy teams. enriched with rank so simple projection can be done.

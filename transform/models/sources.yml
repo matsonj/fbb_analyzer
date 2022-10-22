@@ -1,0 +1,77 @@
+version: 2
+
+sources:
+  - name: current_season # this is the source_name
+    schema: main_raw
+    tables: 
+      - name: current_rosters
+        description: export of all players from fantrax. this table is versioned - i.e. every import adds more records to the table
+        columns: 
+          - name: id
+            description: unique id of the player from fantrax
+            tests:
+              - not_null
+          - name: player
+            description: player first and last name
+          - name: team
+            description: NBA team abbreviation - players without a team have the value (N/A)
+          - name: position
+            description: concatenated list of eligbile positions in fantrax
+          - name: rkov
+            description: overall rank of the player in fantrax
+          - name: status
+            description: fantasy team that is associated to a player. Free Agents have the value 'FA'
+          - name: opponent
+            description: opponent name on the day that the data was extracted from fantrax
+          - name: score
+            description: fantrax assessment of players score relative to others
+          - name: _rostered
+            description: percentage of leagues where this player is on a roster
+          - name: _
+            description: change in '_rostered' value of the player since an arbitrary time as defined in fantrax
+          - name: gp
+            description: games played this season
+          - name: min
+            description: average number of minutes per game
+          - name: fga
+            description: number of field goal attempts per game
+          - name: fg
+            description: field goal percentage (fgm/fga) for the season
+          - name: 3ptm
+            description: 3 pointers made per game
+          - name: 3pt
+            description: 3 point percentage (3pm/3pa) for the season 
+          - name: fta
+            description: free throw attempts per game
+          - name: ft
+            description: free throw percentage (ftm/fta) for the season
+          - name: pts
+            description: number of points scored per game
+          - name: reb
+            description: number of rebounds per game
+          - name: ast
+            description: number of assists per game
+          - name: st
+            description: number of steals per game
+          - name: blk
+            description: number of blocks per game
+          - name: to
+            description: number of turnovers per game
+          - name: pf
+            description: number of personal fouls per game
+          - name: _smart_source_bucket
+            description: origin directory of the imported file
+          - name: _smart_source_file
+            description: file name of the imported file
+          - name: _smart_source_lineno
+            description: line number of the imported file
+          - name: _sdc_received_at
+            description: unknown
+          - name: _sdc_sequence_no
+            description: unknown
+          - name: _sdc_batched_at
+            description: time the data was imported into hyperdunk
+          - name: _sdc_primary_key
+            description: primary key hash of the record. primary keys are not currently implemented, so each row has its own key
+      - name: stats
+      - name: transactions
