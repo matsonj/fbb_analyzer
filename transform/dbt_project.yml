@@ -7,7 +7,7 @@ version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'local_sql'
+profile: 'meltano'
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
@@ -33,17 +33,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
     fbb_analyzer:
-        history:
-            raw:
-                schema: psa
-            prep:
-                schema: prep
-            conformed:
-                schema: conf
-                materialized: table
         current season:
             raw:
-                schema: psa
+                schema: raw
             prep:
                 schema: prep
             conformed:

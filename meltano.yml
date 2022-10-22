@@ -15,19 +15,19 @@ plugins:
         name: teams
         pattern: teams.csv
         start_date: '2001-01-01T00:00:00Z'
-        key_properties: [key]
+        key_properties: [long_name]
         format: csv
       - path: file://./data
         name: starters
         pattern: starters.csv
         start_date: '2001-01-01T00:00:00Z'
-        key_properties: [team]
+        key_properties: [rank]
         format: csv
       - path: file://./data/current rosters
         name: rosters
-        pattern: *.csv
+        pattern: .*
         start_date: '2001-01-01T00:00:00Z'
-        key_properties: [team]
+        key_properties: [ID]
         format: csv
   loaders:
   - name: target-duckdb
@@ -50,17 +50,16 @@ plugins:
     label: dbt duckdb extension
     pip_url: dbt-core~=1.2.0 dbt-duckdb~=1.2.0 git+https://github.com/meltano/dbt-ext.git
     executable: dbt_invoker
-    config:
-      path: /tmp/mdsbox.db
     settings:
     - name: project_dir
       value: $MELTANO_PROJECT_ROOT/transform
       label: Projects Directory
     - name: skip_pre_invoke
+      env: DBT_EXT_SKIP_PRE_INVOKE
       kind: boolean
       value: false
-      description: Whether to skip pre-invoke hooks which automatically run dbt clean and deps
-      env: DBT_EXT_SKIP_PRE_INVOKE
+      description: Whether to skip pre-invoke hooks which automatically run dbt clean
+        and deps
     - name: type
       env: DBT_EXT_TYPE
       value: duckdb
@@ -69,20 +68,21 @@ plugins:
       value: $MELTANO_PROJECT_ROOT/transform/profiles/duckdb
       label: Profiles Directory
     - name: project_dir
-      label: Projects Directory
       value: $MELTANO_PROJECT_ROOT/transform
+      label: Projects Directory
     - name: profiles_dir
-      label: Profiles Directory
+      env: DBT_PROFILES_DIR
       value: $MELTANO_PROJECT_ROOT/transform/profiles/duckdb
-      env: DBT_PROFILES_DIR  
+      label: Profiles Directory
     - name: path
-      label: Path
       kind: string
-      description: The path on your local filesystem where you would like the DuckDB database file and it's associated write-ahead log to be written.
+      label: Path
+      description: The path on your local filesystem where you would like the DuckDB
+        database file and it's associated write-ahead log to be written.
     - name: schema
       kind: string
-      label: Schema
       value: main
+      label: Schema
       description: Specify the schema to write into.
     commands:
       build:
@@ -94,11 +94,6 @@ plugins:
       initialize:
         args: initialize
         executable: dbt_extension
-schedules:
-- name: spreadsheets-anywhere-to-duckdb
-  interval: '@once'
-  extractor: tap-spreadsheets-anywhere
-  loader: target-duckdb
-  transform: skip
-  start_date: 2022-10-01 18:08:45.303947
+    config:
+      path: /tmp/mdsbox.db
 project_id: 0f7b47e6-7268-4193-9522-1773c1ee9fee

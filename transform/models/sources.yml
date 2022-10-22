@@ -1,18 +1,10 @@
 version: 2
 
 sources:
-  - name: all_data # this is the source_name
-    database: hyperdunk
-    schema: import
-    tables:
-      - name: elo
-      - name: historical_stats
-
   - name: current_season # this is the source_name
-    database: hyperdunk
-    schema: import
+    schema: main_raw
     tables: 
-      - name: rosters
+      - name: current_rosters
         description: export of all players from fantrax. this table is versioned - i.e. every import adds more records to the table
         columns: 
           - name: id
