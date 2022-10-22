@@ -34,12 +34,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
     fbb_analyzer:
         current season:
-            raw:
-                schema: raw
-            prep:
-                schema: prep
             conformed:
-                schema: conf
                 materialized: table
 
 seeds:

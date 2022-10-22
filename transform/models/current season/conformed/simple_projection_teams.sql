@@ -1,8 +1,8 @@
 select 
 	status,
 	SUM(gp) as gp,
-	SUM(fga * fg) / SUM(fga) as fg,
-	SUM(fta * ft) / SUM(fta) as ft,
+	ROUND(SUM(fga * fg) / SUM(fga),3) as fg,
+	ROUND(SUM(fta * ft) / SUM(fta),3) as ft,
 	SUM("3ptm") as "3ptm",
 	SUM(pts) as pts,
 	SUM(reb) as reb,

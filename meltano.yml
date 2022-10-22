@@ -11,18 +11,6 @@ plugins:
     pip_url: git+https://github.com/ets/tap-spreadsheets-anywhere.git
     config:
       tables:
-      - path: file://./data
-        name: teams
-        pattern: teams.csv
-        start_date: '2001-01-01T00:00:00Z'
-        key_properties: [long_name]
-        format: csv
-      - path: file://./data
-        name: starters
-        pattern: starters.csv
-        start_date: '2001-01-01T00:00:00Z'
-        key_properties: [rank]
-        format: csv
       - path: file://./data/current rosters
         name: rosters
         pattern: .*
@@ -57,16 +45,12 @@ plugins:
     - name: skip_pre_invoke
       env: DBT_EXT_SKIP_PRE_INVOKE
       kind: boolean
-      value: false
+      value: true
       description: Whether to skip pre-invoke hooks which automatically run dbt clean
         and deps
     - name: type
       env: DBT_EXT_TYPE
       value: duckdb
-    - name: profiles_dir
-      env: DBT_PROFILES_DIR
-      value: $MELTANO_PROJECT_ROOT/transform/profiles/duckdb
-      label: Profiles Directory
     - name: project_dir
       value: $MELTANO_PROJECT_ROOT/transform
       label: Projects Directory

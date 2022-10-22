@@ -2,15 +2,13 @@ version: 2
 
 sources:
   - name: current_season # this is the source_name
-    schema: main_raw
+    schema: main
     tables: 
       - name: current_rosters
         description: export of all players from fantrax. this table is versioned - i.e. every import adds more records to the table
         columns: 
           - name: id
             description: unique id of the player from fantrax
-            tests:
-              - not_null
           - name: player
             description: player first and last name
           - name: team
