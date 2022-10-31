@@ -1,6 +1,8 @@
 select status,
 	fg as fg_pg,
 	ft as ft_pg,
+	wtd_fg / gp as wtd_fg_pg,
+	wtd_ft / gp as wtd_ft_pg,
 	"3ptm" / gp as "3ptm_pg",
 	pts / gp as pts_pg,
 	reb / gp as reb_pg,

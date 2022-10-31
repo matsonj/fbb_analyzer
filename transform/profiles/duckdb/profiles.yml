@@ -20,3 +20,4 @@ meltano:
     parquet:
       type: duckdb
       threads: 4
+      path: "{{ env_var('DBT_DUCKDB_PATH') }}"
